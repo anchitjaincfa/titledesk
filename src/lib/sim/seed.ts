@@ -38,7 +38,7 @@ const DEFS: Def[] = [
   { st: "CA", y: 2020, make: "Tesla", model: "Model 3", wmi: "5YJ", buyer: "Wei Zhang", price: 27800, ago: 7, stage: "filed" },
   { st: "TX", y: 2018, make: "GMC", model: "Sierra 1500", wmi: "1GT", buyer: "Tamika Jefferson", price: 26500, ago: 5, stage: "filed", lender: "Westlake Financial" },
   { st: "FL", y: 2019, make: "Dodge", model: "Charger", wmi: "2C3", buyer: "Rafael Ortiz", price: 24300, ago: 6, stage: "filed" },
-  { st: "GA", y: 2016, make: "Ford", model: "Fusion", wmi: "3FA", buyer: "Latoya Simmons", price: 10200, ago: 12, stage: "rejected", defect: "ODOMETER_MISMATCH" },
+  { st: "GA", y: 2018, make: "Ford", model: "Fusion", wmi: "3FA", buyer: "Latoya Simmons", price: 10200, ago: 12, stage: "rejected", defect: "ODOMETER_MISMATCH" },
   { st: "NC", y: 2019, make: "Nissan", model: "Rogue", wmi: "5N1", buyer: "Jacob Whitaker", price: 19800, ago: 10, stage: "rejected", defect: "LIEN_NOT_RELEASED", lender: "Capital One Auto" },
   { st: "OH", y: 2018, make: "Buick", model: "Encore", wmi: "KL4", buyer: "Ruth Ann Miller", price: 14900, ago: 14, stage: "rejected", defect: "WRONG_FORM_VERSION", attempts: 2 },
   { st: "PA", y: 2021, make: "Subaru", model: "Forester", wmi: "JF2", buyer: "Daniel Okafor", price: 26100, ago: 18, stage: "cleared" },
@@ -77,7 +77,7 @@ function buildDeal(i: number, def: Def): Deal {
   const soldAt = addDays(NOW, -def.ago);
   const year = def.y;
   const h = hash32(id);
-  const odo = Math.max(1, NOW.slice(0, 4) > "0" ? (2026 - year) * 11000 + (h % 9000) : 0);
+  const odo = (2026 - year) * 11000 + (h % 9000);
   const skeleton: Deal = {
     id, dealerId: DEALER_ID, stock: `SA-${1040 + i}`,
     vin: makeVin(def.wmi, year, id), year, make: def.make, model: def.model,
