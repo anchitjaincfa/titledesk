@@ -51,7 +51,7 @@ export function RoiCalculator() {
           <Field label="Delay you assume is avoided" value={avoid} onChange={setAvoid} suffix="%" hint="Catching errors before filing" />
         </div>
       </Card>
-      <Card className="bg-brand text-brand-ink">
+      <Card className="bg-brand! text-brand-ink!">
         <h2 className="font-display text-xl font-bold">Estimate</h2>
         <dl className="mt-5 space-y-4" aria-live="polite">
           <div><dt className="text-sm opacity-80">Titles delayed per month</dt><dd className="font-display text-3xl font-bold">{rejected.toFixed(1)}</dd></div>
