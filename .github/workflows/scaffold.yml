@@ -1,0 +1,20 @@
+name: scaffold
+on: workflow_dispatch
+permissions:
+  contents: write
+jobs:
+  s:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          package-manager-cache: false
+      - run: |
+          npx --yes create-next-app@16 app --ts --tailwind --eslint --app --src-dir --import-alias "@/*" --use-npm --skip-install --yes
+          cp -rn app/. . && rm -rf app
+          npm install zod@3 vitest@2 --save-exact=false
+          npm pkg set scripts.test="vitest run" scripts.typecheck="next typegen && tsc --noEmit"
+          git config user.name bot && git config user.email bot@x.io
+          git add -A && git commit -m "scaffold next 16" && git push
