@@ -127,7 +127,7 @@ function buildDeal(i: number, def: Def): Deal {
   if (deal.stage === "needs_fixes") {
     deal = { ...deal, assignee: "Dana", events: [...deal.events, ev(NOW, "issues_found", `${deal.issues.filter((x) => x.severity === "blocker" && !x.resolved).length} blocker(s) found by the desk agent.`, "agent")] };
   }
-  return deal;
+  return { ...deal, issues: checkDeal(deal, NOW) };
 }
 
 export function seedStore(): Store {
