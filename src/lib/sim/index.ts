@@ -1,9 +1,9 @@
 import type { Deal, DealDoc, DealEvent, DocFields, DocType, RejectionCode, Store } from "../types";
 import { checkDeal, daysSince, deriveStage, getProfile } from "../engine";
-import { REJECTION_MESSAGES, seedStore } from "./seed";
+import { REJECTION_MESSAGES } from "./seed";
 import { addDays, hash32, makeDoc } from "./util";
 
-export { seedStore, NOW_SEED } from "./seed";
+export { seedStore } from "./seed";
 export { hash32, addDays, makeVin, vinCheckDigit } from "./util";
 
 export const MAX_ATTEMPTS = 3;
